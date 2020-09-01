@@ -11,9 +11,10 @@ def scrape():
 
     news_title, news_p = scrape_news()
 
-    mars_dict= {}
+    mars_dict= {
 
     mars_dict['title'] = news_title
+    
     mars_dict['paragraph'] = news_p
 
     mars_dict['main_image'] = scrape_mars_image()
@@ -21,9 +22,12 @@ def scrape():
     mars_dict['mars_facts'] = mars_facts()
 
     mars_dict['mars_hemispheres'] = mars_hemisphere()
+    }
+   
+return mars_dict 
 
-    browser.quit()
-    return mars_dict 
+if __name__=='__main__':
+    scrape()
 
 # Mars News
 def scrape_news():
@@ -44,7 +48,7 @@ def scrape_news():
         #print(news_p)
     except AttributeError:
         return None, None
-    #browser.quit()
+    browser.quit()
 
     return news_title, news_p
 
@@ -65,6 +69,7 @@ def scrape_image():
         #print(carousel_item)
     except AttributeError:
         return None, None 
+    browser.quit()
     
 # Mars Facts 
 def scrape_facts():
@@ -111,7 +116,8 @@ for hemis in hemisphere:
     
     hemisphere_image_url.append({"title":title, "img_url":full_img_url})
    
-hemisphere_image_url
+    browser.quit()
+print(hemisphere_image_url)
 
 
 
